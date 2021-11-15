@@ -2,11 +2,10 @@
   "name": "fastify-introduction",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "app/test"
-  },
+  "main": "server.mjs",
+  "module": "true",
   "scripts": {
+    "start:dev": "nodemon app/src/server.mjs",
     "test": "echo \\\"Error: no app/test specified\\\" && exit 1"
   },
   "repository": {
@@ -14,7 +13,7 @@
     "url": "git+https://github.com/raulsoledispa/fastify-introduction.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Raul Soledispa",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/raulsoledispa/fastify-introduction/issues"
@@ -26,6 +25,11 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
     "prettier": "2.4.1"
+  },
+  "dependencies": {
+    "fastify": "^3.23.1",
+    "pino-pretty": "^7.2.0"
   }
 }
