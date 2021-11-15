@@ -1,14 +1,13 @@
-import Fastify from "fastify";
+import BuildServer from "./index.mjs";
 
-const app = Fastify({
-    logger:{
-        prettyPrint: true
+const server = BuildServer();
+const start = async () => {
+    try {
+        await server.listen(3000);
+        server.log.info(server.printRoutes())
+    }catch (error){
+        server.log.error(`Error initializing server ${error.message}`)
     }
-});
+}
 
-app.get("/greeting", async(req,
-                           reply) => {
-    reply.send({ message : "Hello from fastify"})
-})
-
-await app.listen(3000);
+start();
