@@ -1,6 +1,10 @@
+//import { save, getAll } from "../plugins/repository.mjs";
+
+const DB_NAME = "user";
 async function routes(fastify){
     fastify.get("/users", async(req,reply) =>{
-        reply.send({ message: "Hello from users"})
+        const users = await fastify.repository.getAll(DB_NAME);
+        reply.send(users);
     })
 }
 

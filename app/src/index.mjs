@@ -7,6 +7,8 @@ function buildServer(){
         }
     });
 
+    app.register(import("./plugins/repository.mjs"))
+
     app.register(import("./routes/cities.mjs"), {
         prefix: "v1"
     });

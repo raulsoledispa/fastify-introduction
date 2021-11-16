@@ -1,5 +1,5 @@
 import Schema from "fluent-json-schema";
-
+//import { save, getAll } from "../plugins/repository.mjs";
 const citySchema = {
     /*
     * response..
@@ -14,15 +14,23 @@ const citySchema = {
         .additionalProperties(false)
 }
 
+const DB_NAME = "city";
 
 async function routes(fastify) {
     fastify.get("/cities", async(req,
                                reply) => {
-        reply.send({ message : "Hello from fastify"})
+        try {
+            const city = await fastify.repository.getAll(DB_NAME);                
+            console.log(city)
+            reply.send(city);
+        } catch (error) {
+            console.log(error)
+        }
     });
 
     fastify.post("/cities", { schema: citySchema} , async(req,
                                  reply) => {
+        await fastify.repository.save(DB_NAME, req.body)
         reply.send({ message : "City created", data: req.body})
     });
 }
